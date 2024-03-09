@@ -16,9 +16,6 @@ func main() {
 }
 
 func getMin(wait, trains int) int {
-	if trains == 1 {
-		return 1
-	}
 	return wait*(trains-1) + trains
 }
 
