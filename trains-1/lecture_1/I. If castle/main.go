@@ -10,35 +10,19 @@ func main() {
 }
 
 func solution(a, b, c, d, e int) string {
-	if a <= d {
-		if b <= e || c <= e {
-			return "YES"
-		}
-	}
-	if b <= d {
-		if a <= e || c <= e {
-			return "YES"
-		}
-	}
-	if c <= d {
-		if a <= e || b <= e {
-			return "YES"
-		}
-	}
-	if a <= e {
-		if b <= d || c <= d {
-			return "YES"
-		}
-	}
-	if b <= e {
-		if a <= d || c <= d {
-			return "YES"
-		}
-	}
-	if c <= e {
-		if a <= d || b <= d {
-			return "YES"
-		}
+	a, b = sort(a, b)
+	b, _ = sort(b, c)
+	a, b = sort(a, b)
+	d, e = sort(d, e)
+	if a <= d && b <= e {
+		return "YES"
 	}
 	return "NO"
+}
+
+func sort(a, b int) (int, int) {
+	if a > b {
+		return b, a
+	}
+	return a, b
 }
