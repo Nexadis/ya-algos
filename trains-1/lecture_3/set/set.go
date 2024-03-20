@@ -18,6 +18,9 @@ func NewSet(size int) mySet {
 }
 
 func (s *mySet) Add(x int) {
+	if s.Find(x) {
+		return
+	}
 	s.data[x%s.size] = append(s.data[x%s.size], x)
 }
 
