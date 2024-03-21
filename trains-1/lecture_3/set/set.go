@@ -21,11 +21,11 @@ func (s *mySet) Add(x int) {
 	if s.Find(x) {
 		return
 	}
-	s.data[x%s.size] = append(s.data[x%s.size], x)
+	s.data[s.hash(x)] = append(s.data[s.hash(x)], x)
 }
 
 func (s *mySet) Find(x int) bool {
-	l := s.data[x%s.size]
+	l := s.data[s.hash(x)]
 	for _, v := range l {
 		if x == v {
 			return true
@@ -35,11 +35,15 @@ func (s *mySet) Find(x int) bool {
 }
 
 func (s *mySet) Delete(x int) {
-	l := s.data[x%s.size]
+	l := s.data[s.hash(x)]
 	for i, v := range l {
 		if x == v {
 			l[i] = l[len(l)-1]
 			l = l[:len(l)-1]
 		}
 	}
+}
+
+func (s *mySet) hash(x int) int {
+	return x % s.size
 }
